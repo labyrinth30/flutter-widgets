@@ -25,7 +25,7 @@ final TABS = [
     icon: Icons.add,
   ),
   const TabInfo(
-    label: 'Favorite',
+    label: 'Like',
     icon: Icons.favorite,
   ),
   const TabInfo(
