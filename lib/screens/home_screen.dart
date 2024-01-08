@@ -1,69 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/layout/default_layout.dart';
 import 'package:flutter_widgets/screens/scrollable/grid_view_screen.dart';
 import 'package:flutter_widgets/screens/scrollable/list_view_screen.dart';
 import 'package:flutter_widgets/screens/scrollable/single_child_scroll_screen.dart';
 import 'package:flutter_widgets/screens/tabbar/basic_appbar_tabbar_screen.dart';
 
+class ScreenModel {
+  final WidgetBuilder builder;
+  final String name;
+
+  ScreenModel({
+    required this.builder,
+    required this.name,
+  });
+}
+
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final screens = [
+    ScreenModel(
+      builder: (context) => SingleChildScrollViewScreen(),
+      name: 'SingleChildScrollView',
+    ),
+    ScreenModel(
+      builder: (context) => ListViewScreen(),
+      name: 'ListView',
+    ),
+    ScreenModel(
+      builder: (context) => const GridViewScreen(),
+      name: 'GridView',
+    ),
+    ScreenModel(
+      builder: (context) => const BasicAppbarTabbarScreen(),
+      name: 'Basic AppBar TabBar',
+    ),
+  ];
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-        ),
+    return DefaultLayout(
+      title: 'Home',
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Text('Scrollable'),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => SingleChildScrollViewScreen(),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: screens
+                .map(
+                  (screen) => ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: screen.builder,
+                        ),
+                      );
+                    },
+                    child: Text(
+                      screen.name,
                     ),
-                  );
-                },
-                child: const Text('SingleChildScrollViewScreen'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const ListViewScreen(),
-                    ),
-                  );
-                },
-                child: const Text('List View Screen'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const GridViewScreen(),
-                    ),
-                  );
-                },
-                child: const Text('Grid View Screen'),
-              ),
-              const Text('TabBar'),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const BasicAppbarTabbarScreen(),
-                    ),
-                  );
-                },
-                child: const Text('Basic AppBar TabBar Screen'),
-              ),
-            ],
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),

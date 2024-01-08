@@ -3,7 +3,7 @@ import 'package:flutter_widgets/screens/home_screen.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
+    MaterialApp(
       home: HomeScreen(),
     ),
   );
