@@ -4,6 +4,7 @@ import 'package:flutter_widgets/screens/scrollable/custom_scroll_view_screen.dar
 import 'package:flutter_widgets/screens/scrollable/grid_view_screen.dart';
 import 'package:flutter_widgets/screens/scrollable/list_view_screen.dart';
 import 'package:flutter_widgets/screens/scrollable/reorderable_list_view_screen.dart';
+import 'package:flutter_widgets/screens/scrollable/scrollbar_screen.dart';
 import 'package:flutter_widgets/screens/scrollable/single_child_scroll_screen.dart';
 import 'package:flutter_widgets/screens/tabbar/basic_appbar_tabbar_screen.dart';
 
@@ -38,6 +39,10 @@ class HomeScreen extends StatelessWidget {
     ScreenModel(
       builder: (context) => CustomScrollViewScreen(),
       name: 'CustomScrollView',
+    ),
+    ScreenModel(
+      builder: (context) => ScrollBarScreen(),
+      name: 'ScrollScreen',
     ),
     ScreenModel(
       builder: (context) => const BasicAppbarTabbarScreen(),
