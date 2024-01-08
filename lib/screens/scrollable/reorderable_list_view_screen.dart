@@ -46,6 +46,7 @@ class _ReorderableListViewScreenState extends State<ReorderableListViewScreen> {
 
   // 2
   // ReorderableListView.builder
+  // index를 레퍼런스하면 변하지 않는다.
   Widget renderBuilder() {
     return ReorderableListView.builder(
       itemCount: numbers.length,
