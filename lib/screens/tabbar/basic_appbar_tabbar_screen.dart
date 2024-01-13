@@ -23,12 +23,18 @@ class BasicAppbarTabbarScreen extends StatelessWidget {
           ),
           title: const Text('Basic AppBar TabBar Screen'),
         ),
-        body: const Column(
-          children: [
-            Column(
-              children: [],
-            ),
-          ],
+        body: TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
+          children: TABS
+              .map(
+                (e) => Center(
+                  child: Icon(
+                    e.icon,
+                    size: 30.0,
+                  ),
+                ),
+              )
+              .toList(),
         ),
       ),
     );
