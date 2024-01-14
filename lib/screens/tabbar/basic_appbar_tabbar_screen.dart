@@ -11,15 +11,35 @@ class BasicAppbarTabbarScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          bottom: TabBar(
-            tabs: TABS
-                .map(
-                  (e) => Tab(
-                    icon: Icon(e.icon),
-                    child: Text(e.label),
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(100.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TabBar(
+                  indicatorColor: Colors.red,
+                  indicatorWeight: 4.0,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  isScrollable: true,
+                  labelColor: Colors.amber,
+                  unselectedLabelColor: Colors.blue,
+                  labelStyle: const TextStyle(
+                    fontWeight: FontWeight.w700,
                   ),
-                )
-                .toList(),
+                  unselectedLabelStyle: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                  ),
+                  tabs: TABS
+                      .map(
+                        (e) => Tab(
+                          icon: Icon(e.icon),
+                          child: Text(e.label),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ],
+            ),
           ),
           title: const Text('Basic AppBar TabBar Screen'),
         ),
